@@ -1,0 +1,5 @@
+{
+	"description": "Entities perspective",
+	"extensionPoint": "launchpad-sima-perspective",
+	"module": "sima-proba/ui/Entities/extensions/perspective/perspective.js"
+}

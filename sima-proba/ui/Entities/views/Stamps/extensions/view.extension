@@ -1,0 +1,5 @@
+{
+	"description": "Stamps view",
+	"extensionPoint": "launchpad-sima-Entities-view",
+	"module": "sima-proba/ui/Entities/views/Stamps/extensions/view.js"
+}

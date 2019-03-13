@@ -1,0 +1,5 @@
+{
+	"description": "Home perspective",
+	"extensionPoint": "launchpad-sima-perspective",
+	"module": "sima-proba/ui/extensions/perspective.js"
+}

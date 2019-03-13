@@ -1,0 +1,5 @@
+{
+	"description": "Stamps menu",
+	"extensionPoint": "shell-sima-proba-menu",
+	"module": "sima-proba/views/Stamps/menu/item.js"
+}

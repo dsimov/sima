@@ -1,0 +1,5 @@
+{
+	"description": "Series view",
+	"extensionPoint": "launchpad-sima-Entities-view",
+	"module": "sima-proba/ui/Entities/views/Series/extensions/view.js"
+}

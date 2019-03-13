@@ -1,0 +1,50 @@
+{
+    "schema": {
+        "structures": [
+            {
+                "name": "STAMPS",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "length": 0,
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "ID"
+                    }, {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "CATALOGNUMBER"
+                    }, {
+                        "type": "INTEGER",
+                        "length": 0,
+                        "nullable": true,
+                        "name": "SERIES"
+                    }]
+            }, {
+                "name": "SERIES",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "length": 0,
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "ID"
+                    }, {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "NAME"
+                    }, {
+                        "type": "VARCHAR",
+                        "length": 1000,
+                        "nullable": true,
+                        "name": "DESCRIPTION"
+                    }]
+            }]
+    }
+}
