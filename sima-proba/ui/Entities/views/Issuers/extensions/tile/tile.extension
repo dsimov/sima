@@ -1,0 +1,5 @@
+{
+	"description": "Entities tiles",
+	"extensionPoint": "launchpad-sima-tiles",
+	"module": "sima-proba/ui/Entities/views/Issuers/extensions/tile/tile.js"
+}

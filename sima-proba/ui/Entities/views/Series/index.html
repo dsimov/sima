@@ -25,6 +25,7 @@
 					<th class="text-capitalize">ID</th>
 					<th class="text-capitalize">Name</th>
 					<th class="text-capitalize">Description</th>
+					<th class="text-capitalize">Issuer</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -34,6 +35,7 @@
 					<td>{{next.ID}}</td>
 					<td>{{next.Name}}</td>
 					<td>{{next.Description}}</td>
+					<td>{{issuerOptionValue(next.Issuer)}}</td>
 					<td>
 						<i class="close fa fa-remove" ng-click="openDeleteDialog(next)" style="font-size: 1.4em"></i>
 						<i class="close fa fa-bars" ng-click="openEditDialog(next)" style="margin-right: 0.5em; font-size: 1.4em"></i>					</td>
@@ -62,6 +64,10 @@
 						<div class="form-group">
 							<label>Description</label>
 							<textarea class="form-control" placeholder="Enter description" ng-model="entity.Description"></textarea>
+						</div>
+						<div class="form-group">
+							<label>Issuer</label>
+							<select class="form-control" ng-options="o.ID as o.Organization for o in issuerOptions" ng-model="entity.Issuer"></select>
 						</div>
 					</form>
 					<div ng-show="actionType === 'delete'">

@@ -28,6 +28,9 @@ angular.module('page')
 		onEntityRefresh: function(callback) {
 			on('sima-proba.Entities.Series.refresh', callback);
 		},
+		onIssuersModified: function(callback) {
+			on('sima-proba.Entities.Issuers.modified', callback);
+		},
 		messageEntityModified: function() {
 			message('modified');
 		}
@@ -36,12 +39,23 @@ angular.module('page')
 .controller('PageController', function ($scope, $http, $messageHub) {
 
 	var api = '../../../../../../../../services/v3/js/sima-proba/api/Entities/Series.js';
+	var issuerOptionsApi = '../../../../../../../../services/v3/js/sima-proba/api/Entities/Issuers.js';
+
+	$scope.issuerOptions = [];
 
 	$scope.dateOptions = {
 		startingDay: 1
 	};
 	$scope.dateFormats = ['yyyy/MM/dd', 'dd-MMMM-yyyy', 'dd.MM.yyyy', 'shortDate'];
 	$scope.dateFormat = $scope.dateFormats[0];
+
+	function issuerOptionsLoad() {
+		$http.get(issuerOptionsApi)
+		.success(function(data) {
+			$scope.issuerOptions = data;
+		});
+	}
+	issuerOptionsLoad();
 
 	$scope.dataPage = 1;
 	$scope.dataCount = 0;
@@ -136,8 +150,17 @@ angular.module('page')
 		});
 	};
 
+	$scope.issuerOptionValue = function(optionKey) {
+		for (var i = 0 ; i < $scope.issuerOptions.length; i ++) {
+			if ($scope.issuerOptions[i].ID === optionKey) {
+				return $scope.issuerOptions[i].Organization;
+			}
+		}
+		return null;
+	};
 
 	$messageHub.onEntityRefresh($scope.loadPage($scope.dataPage));
+	$messageHub.onIssuersModified(issuerOptionsLoad);
 
 	function toggleEntityModal() {
 		$('#entityModal').modal('toggle');

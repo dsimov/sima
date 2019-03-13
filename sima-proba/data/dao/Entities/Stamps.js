@@ -17,6 +17,18 @@ var dao = daoApi.create({
 			name: "Series",
 			column: "SERIES",
 			type: "INTEGER",
+		}, {
+			name: "Issuer",
+			column: "ISSUER",
+			type: "INTEGER",
+		}, {
+			name: "Denomination",
+			column: "DENOMINATION",
+			type: "DOUBLE",
+		}, {
+			name: "DenominationUnit",
+			column: "DENOMINATIONUNIT",
+			type: "INTEGER",
 		}]
 });
 exports.list = function(settings) {

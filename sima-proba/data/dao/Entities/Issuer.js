@@ -2,7 +2,7 @@ var query = require("db/v3/query");
 var producer = require("messaging/v3/producer");
 var daoApi = require("db/v3/dao");
 var dao = daoApi.create({
-	table: "SERIES",
+	table: "ISSUER",
 	properties: [
 		{
 			name: "ID",
@@ -10,17 +10,25 @@ var dao = daoApi.create({
 			type: "INTEGER",
 			id: true,
 		}, {
-			name: "Name",
-			column: "NAME",
+			name: "Country",
+			column: "COUNTRY",
 			type: "VARCHAR",
 		}, {
-			name: "Description",
-			column: "DESCRIPTION",
+			name: "Organization",
+			column: "ORGANIZATION",
 			type: "VARCHAR",
 		}, {
-			name: "Issuer",
-			column: "ISSUER",
-			type: "INTEGER",
+			name: "OrgAcronym",
+			column: "ORGACRONYM",
+			type: "VARCHAR",
+		}, {
+			name: "Place",
+			column: "PLACE",
+			type: "VARCHAR",
+		}, {
+			name: "Reason",
+			column: "REASON",
+			type: "VARCHAR",
 		}]
 });
 exports.list = function(settings) {
@@ -34,7 +42,7 @@ exports.get = function(id) {
 exports.create = function(entity) {
 	var id = dao.insert(entity);
 	triggerEvent("Create", {
-		table: "SERIES",
+		table: "ISSUER",
 		key: {
 			name: "ID",
 			column: "ID",
@@ -47,7 +55,7 @@ exports.create = function(entity) {
 exports.update = function(entity) {
 	dao.update(entity);
 	triggerEvent("Update", {
-		table: "SERIES",
+		table: "ISSUER",
 		key: {
 			name: "ID",
 			column: "ID",
@@ -59,7 +67,7 @@ exports.update = function(entity) {
 exports.delete = function(id) {
 	dao.remove(id);
 	triggerEvent("Delete", {
-		table: "SERIES",
+		table: "ISSUER",
 		key: {
 			name: "ID",
 			column: "ID",
@@ -73,7 +81,7 @@ exports.count = function() {
 };
 
 exports.customDataCount = function() {
-	var resultSet = query.execute("SELECT COUNT(*) FROM SERIES");
+	var resultSet = query.execute("SELECT COUNT(*) FROM ISSUER");
 	if (resultSet !== null && resultSet[0] !== null) {
 		if (resultSet[0].COUNT !== undefined && resultSet[0].COUNT !== null) {
 			return resultSet[0].COUNT;
@@ -85,5 +93,5 @@ exports.customDataCount = function() {
 };
 
 function triggerEvent(operation, data) {
-	producer.queue("sima-proba/Entities/Series/" + operation).send(JSON.stringify(data));
+	producer.queue("sima-proba/Entities/Issuer/" + operation).send(JSON.stringify(data));
 }

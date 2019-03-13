@@ -22,6 +22,21 @@
                         "length": 0,
                         "nullable": true,
                         "name": "SERIES"
+                    }, {
+                        "type": "INTEGER",
+                        "length": 0,
+                        "nullable": true,
+                        "name": "ISSUER"
+                    }, {
+                        "type": "DOUBLE",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "DENOMINATION"
+                    }, {
+                        "type": "INTEGER",
+                        "length": 0,
+                        "nullable": true,
+                        "name": "DENOMINATIONUNIT"
                     }]
             }, {
                 "name": "SERIES",
@@ -44,6 +59,65 @@
                         "length": 1000,
                         "nullable": true,
                         "name": "DESCRIPTION"
+                    }, {
+                        "type": "INTEGER",
+                        "length": 0,
+                        "nullable": true,
+                        "name": "ISSUER"
+                    }]
+            }, {
+                "name": "ISSUER",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "length": 0,
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "ID"
+                    }, {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "COUNTRY"
+                    }, {
+                        "type": "VARCHAR",
+                        "length": 120,
+                        "nullable": true,
+                        "name": "ORGANIZATION"
+                    }, {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "ORGACRONYM"
+                    }, {
+                        "type": "VARCHAR",
+                        "length": 50,
+                        "nullable": true,
+                        "name": "PLACE"
+                    }, {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "REASON"
+                    }]
+            }, {
+                "name": "DENOMINATIONUNITS",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "length": 0,
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "ID"
+                    }, {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "DENOMINATIONUNIT"
                     }]
             }]
     }

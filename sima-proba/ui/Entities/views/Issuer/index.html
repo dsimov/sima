@@ -14,7 +14,7 @@
 
 <body ng-controller="PageController">
 	<div class="page-header container">
-		<h1>Manage Stamps</h1>
+		<h1>Manage Issuer</h1>
 	</div>
 	<div class="container">
 		<button type="button" ng-click="openNewDialog()" class="btn btn-lg btn-primary pull-right">New</button>
@@ -23,11 +23,11 @@
 				<tr>
 					<th>#</th>
 					<th class="text-capitalize">ID</th>
-					<th class="text-capitalize">Catalog Number</th>
-					<th class="text-capitalize">Series</th>
-					<th class="text-capitalize">Issuer</th>
-					<th class="text-capitalize">Denomination</th>
-					<th class="text-capitalize">DenominationUnit</th>
+					<th class="text-capitalize">Country</th>
+					<th class="text-capitalize">Organization</th>
+					<th class="text-capitalize">OrgAcronym</th>
+					<th class="text-capitalize">Place</th>
+					<th class="text-capitalize">Reason</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -35,11 +35,11 @@
 				<tr ng-repeat="next in data">
 					<td>{{(dataPage - 1) * dataLimit + $index + 1}}</td>
 					<td>{{next.ID}}</td>
-					<td>{{next.CatalogNumber}}</td>
-					<td>{{seriesOptionValue(next.Series)}}</td>
-					<td>{{issuerOptionValue(next.Issuer)}}</td>
-					<td>{{next.Denomination}}</td>
-					<td>{{next.DenominationUnit}}</td>
+					<td>{{next.Country}}</td>
+					<td>{{next.Organization}}</td>
+					<td>{{next.OrgAcronym}}</td>
+					<td>{{next.Place}}</td>
+					<td>{{next.Reason}}</td>
 					<td>
 						<i class="close fa fa-remove" ng-click="openDeleteDialog(next)" style="font-size: 1.4em"></i>
 						<i class="close fa fa-bars" ng-click="openEditDialog(next)" style="margin-right: 0.5em; font-size: 1.4em"></i>					</td>
@@ -62,28 +62,28 @@
 				<div class="modal-body">
 					<form ng-hide="actionType === 'delete'">
 						<div class="form-group">
-							<label>Catalog Number</label>
-							<input type="text" class="form-control" placeholder="Enter catalog number" ng-model="entity.CatalogNumber">
+							<label>Country</label>
+							<input type="text" class="form-control" placeholder="Enter country" ng-model="entity.Country">
 						</div>
 						<div class="form-group">
-							<label>Series</label>
-							<select class="form-control" ng-options="o.ID as o.Name for o in seriesOptions" ng-model="entity.Series"></select>
+							<label>Organization</label>
+							<input type="text" class="form-control" placeholder="Enter organization" ng-model="entity.Organization">
 						</div>
 						<div class="form-group">
-							<label>Issuer</label>
-							<select class="form-control" ng-options="o.ID as o.Organization for o in issuerOptions" ng-model="entity.Issuer"></select>
+							<label>OrgAcronym</label>
+							<input type="text" class="form-control" placeholder="Enter orgacronym" ng-model="entity.OrgAcronym">
 						</div>
 						<div class="form-group">
-							<label>Denomination</label>
-							<input type="number" class="form-control" placeholder="Enter denomination" ng-model="entity.Denomination">
+							<label>Place</label>
+							<input type="text" class="form-control" placeholder="Enter place" ng-model="entity.Place">
 						</div>
 						<div class="form-group">
-							<label>DenominationUnit</label>
-							<input type="text" class="form-control" placeholder="Enter denominationunit" ng-model="entity.DenominationUnit">
+							<label>Reason</label>
+							<input type="text" class="form-control" placeholder="Enter reason" ng-model="entity.Reason">
 						</div>
 					</form>
 					<div ng-show="actionType === 'delete'">
-						You are going to delete <b>Stamps</b> with <b>ID = {{entity.ID}}</b>.
+						You are going to delete <b>Issuer</b> with <b>ID = {{entity.ID}}</b>.
 					</div>
 				</div>
 				<div class="modal-footer">

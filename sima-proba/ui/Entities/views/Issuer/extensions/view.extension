@@ -1,0 +1,5 @@
+{
+	"description": "Issuer view",
+	"extensionPoint": "launchpad-sima-Entities-view",
+	"module": "sima-proba/ui/Entities/views/Issuer/extensions/view.js"
+}

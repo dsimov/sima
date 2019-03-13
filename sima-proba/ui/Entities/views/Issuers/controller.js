@@ -15,7 +15,7 @@ angular.module('page')
 	var messageHub = new FramesMessageHub();
 
 	var message = function(evtName, data){
-		messageHub.post({data: data}, 'sima-proba.Entities.Stamps.' + evtName);
+		messageHub.post({data: data}, 'sima-proba.Entities.Issuers.' + evtName);
 	};
 
 	var on = function(topic, callback){
@@ -26,13 +26,7 @@ angular.module('page')
 		message: message,
 		on: on,
 		onEntityRefresh: function(callback) {
-			on('sima-proba.Entities.Stamps.refresh', callback);
-		},
-		onSeriesModified: function(callback) {
-			on('sima-proba.Entities.Series.modified', callback);
-		},
-		onIssuersModified: function(callback) {
-			on('sima-proba.Entities.Issuers.modified', callback);
+			on('sima-proba.Entities.Issuers.refresh', callback);
 		},
 		messageEntityModified: function() {
 			message('modified');
@@ -41,35 +35,13 @@ angular.module('page')
 }])
 .controller('PageController', function ($scope, $http, $messageHub) {
 
-	var api = '../../../../../../../../services/v3/js/sima-proba/api/Entities/Stamps.js';
-	var seriesOptionsApi = '../../../../../../../../services/v3/js/sima-proba/api/Entities/Series.js';
-	var issuerOptionsApi = '../../../../../../../../services/v3/js/sima-proba/api/Entities/Issuers.js';
-
-	$scope.seriesOptions = [];
-
-	$scope.issuerOptions = [];
+	var api = '../../../../../../../../services/v3/js/sima-proba/api/Entities/Issuers.js';
 
 	$scope.dateOptions = {
 		startingDay: 1
 	};
 	$scope.dateFormats = ['yyyy/MM/dd', 'dd-MMMM-yyyy', 'dd.MM.yyyy', 'shortDate'];
 	$scope.dateFormat = $scope.dateFormats[0];
-
-	function seriesOptionsLoad() {
-		$http.get(seriesOptionsApi)
-		.success(function(data) {
-			$scope.seriesOptions = data;
-		});
-	}
-	seriesOptionsLoad();
-
-	function issuerOptionsLoad() {
-		$http.get(issuerOptionsApi)
-		.success(function(data) {
-			$scope.issuerOptions = data;
-		});
-	}
-	issuerOptionsLoad();
 
 	$scope.dataPage = 1;
 	$scope.dataCount = 0;
@@ -164,26 +136,8 @@ angular.module('page')
 		});
 	};
 
-	$scope.seriesOptionValue = function(optionKey) {
-		for (var i = 0 ; i < $scope.seriesOptions.length; i ++) {
-			if ($scope.seriesOptions[i].ID === optionKey) {
-				return $scope.seriesOptions[i].Name;
-			}
-		}
-		return null;
-	};
-	$scope.issuerOptionValue = function(optionKey) {
-		for (var i = 0 ; i < $scope.issuerOptions.length; i ++) {
-			if ($scope.issuerOptions[i].ID === optionKey) {
-				return $scope.issuerOptions[i].Organization;
-			}
-		}
-		return null;
-	};
 
 	$messageHub.onEntityRefresh($scope.loadPage($scope.dataPage));
-	$messageHub.onSeriesModified(seriesOptionsLoad);
-	$messageHub.onIssuersModified(issuerOptionsLoad);
 
 	function toggleEntityModal() {
 		$('#entityModal').modal('toggle');

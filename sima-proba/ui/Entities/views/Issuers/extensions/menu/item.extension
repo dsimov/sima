@@ -1,0 +1,5 @@
+{
+	"description": "Issuers menu",
+	"extensionPoint": "shell-sima-proba-menu",
+	"module": "sima-proba/views/Issuers/menu/item.js"
+}
